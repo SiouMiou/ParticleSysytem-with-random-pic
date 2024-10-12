@@ -1,33 +1,32 @@
 class Box {
-  PVector position; // 方框的位置
-  float size; // 方框的大小
-  int timer; // 用於計時
-  int lifeTime;
-  // 構造函數，初始化方框
+  PVector position; // The position of the box
+  float size; // The size of the box
+  int timer; // Timer for tracking updates
+  int lifeTime; // The lifespan of the box before updating its position
+
+  // Constructor: Initializes the box size, position, timer, and lifetime
   Box() {
-    size = 15; // 設置方框大小
-    position =new PVector(width/2,height/2); // 初始化位置
-    timer = 0; // 初始化計時器
-    lifeTime = (int)random(50,80);
+    size = 15;
+    position = new PVector(width / 2, height / 2); // Start position in the center of the canvas
+    timer = 0;
+    lifeTime = (int)random(50, 80); // Random lifetime for updating position
   }
 
-  // 更新方框位置
+  // Update: Moves the box to a new position after its lifetime expires
   void update(PVector p) {
     timer++;
-    if (timer > lifeTime) { // 每60幀更換一次位置
-      position = p; // 隨機獲取新位置
-      timer = 0; // 重置計時器
-      lifeTime = (int)random(30,50);
+    if (timer > lifeTime) {
+      position = p; // Update position
+      timer = 0; // Reset timer
+      lifeTime = (int)random(30, 50); // Set new random lifetime
     }
   }
 
- 
-
-  // 顯示方框
+  // Display: Draws the box on the screen
   void display() {
-    noFill(); // 透明
-    stroke(200); // 邊框顏色為白色
-    strokeWeight(1); // 邊框粗細為1
-    rect(position.x - size / 2, position.y - size / 2, size, size); // 繪製方框
+    noFill(); // Transparent box
+    stroke(200); // White stroke
+    strokeWeight(1);
+    rect(position.x - size / 2, position.y - size / 2, size, size); // Draw the box
   }
 }
